@@ -1,0 +1,1947 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Object Detection Agriculture</title>
+  <!-- CSS files -->
+  <link href="../static/dist/css/tabler.min.css" rel="stylesheet" />
+  <link href="../static/dist/css/tabler-flags.min.css" rel="stylesheet" />
+  <link href="../static/dist/css/tabler-payments.min.css" rel="stylesheet" />
+  <link href="../static/dist/css/tabler-vendors.min.css" rel="stylesheet" />
+  <link href="../static/dist/css/demo.min.css" rel="stylesheet" />
+  <link rel="icon" type="image/jpg" href="../static/images/logo AI.png" sizes="24x24">
+  <style>
+    @import url('https://rsms.me/inter/inter.css');
+
+    :root {
+      --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+    }
+
+    body {
+      font-feature-settings: "cv03", "cv04", "cv11";
+    }
+  </style>
+</head>
+
+<body>
+  <script src="../static/dist/js/demo-theme.min.js"></script>
+  <div class="page">
+    <!-- Sidebar -->
+    <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu"
+					aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<h1 class="navbar-brand navbar-brand-autodark">
+					<a href="{{ url_for('main', filename='index.html' ) }}">
+						<img src="../static/images/logo AI.png" width="110" height="32" alt="Tabler"
+							class="navbar-brand-image">
+					</a>
+				</h1>
+				<div class="collapse navbar-collapse" id="sidebar-menu">
+					<ul class="navbar-nav pt-lg-3">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('main', filename='index.html' ) }}">
+								<span
+									class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+									<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+										viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+										stroke-linecap="round" stroke-linejoin="round">
+										<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+										<path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+										<path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+										<path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+									</svg>
+								</span>
+								<span class="nav-link-title">
+									Home
+								</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('about', filename='about.html' ) }}">
+								<span
+									class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+									<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+										viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+										stroke-linecap="round" stroke-linejoin="round">
+										<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+										<path
+											d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+									</svg>
+								</span>
+								<span class="nav-link-title">
+									About
+								</span>
+							</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+								data-bs-auto-close="false" role="button" aria-expanded="false">
+								<span
+									class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+									<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+										viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+										stroke-linecap="round" stroke-linejoin="round">
+										<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+										<path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+										<path d="M12 12l8 -4.5" />
+										<path d="M12 12l0 9" />
+										<path d="M12 12l-8 -4.5" />
+										<path d="M16 5.25l-8 4.5" />
+									</svg>
+								</span>
+								<span class="nav-link-title">
+									Detection Agriculture
+								</span>
+							</a>
+							<div class="dropdown-menu">
+								<div class="dropdown-menu-columns">
+									<div class="dropdown-menu-column">
+										<a class="dropdown-item" href="{{ url_for('detection_image', filename='detection_image.html' ) }}">
+											Detection Image
+										</a>
+										<a class="dropdown-item" href="{{ url_for('detection_webcam', filename='detection_webcam.html' ) }}">
+											Detection Webcam
+										</a>
+										<a class="dropdown-item" href="{{ url_for('detection_temperature', filename='detection_temperature.html' ) }}">
+											Monitoring IoT
+										</a>
+										<a class="dropdown-item" href="{{ url_for('education_agriculture', filename='education_agriculture.html' ) }}">
+											Education Agriculture
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('team', filename='team.html' ) }}">
+								<span
+									class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+									<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
+										width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+										stroke="currentColor" fill="none" stroke-linecap="round"
+										stroke-linejoin="round">
+										<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+										<path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+										<path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+										<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+										<path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+									</svg>
+								</span>
+								<span class="nav-link-title">
+									Team Engineer
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</aside>
+    <div class="page-wrapper">
+      <!-- Page header -->
+      <div class="page-header d-print-none">
+        <div class="container-xl">
+          <div class="row g-2 align-items-center">
+            <div class="col">
+              <!-- Page pre-title -->
+              <div class="page-pretitle">
+                Overview
+              </div>
+              <h2 class="page-title">
+                Home / Education Agriculture
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page body -->
+      <div class="page-body">
+        <div class="container-xl">
+          <div class="row row-cards">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
+                    <li class="nav-item">
+                      <a href="#tabs-jagung" class="nav-link active" data-bs-toggle="tab">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hexagon-letter-j"
+                          width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path
+                            d="M19.875 6.27a2.225 2.225 0 0 1 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z">
+                          </path>
+                          <path d="M10 8h4v6a2 2 0 1 1 -4 0"></path>
+                        </svg>
+                        Jagung</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#tabs-padi" class="nav-link" data-bs-toggle="tab">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hexagon-letter-p"
+                          width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path
+                            d="M19.875 6.27a2.225 2.225 0 0 1 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z">
+                          </path>
+                          <path d="M10 12h2a2 2 0 1 0 0 -4h-2v8"></path>
+                        </svg>
+                        Padi</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <div class="row row-cards">
+                    <div class="col-md">
+                      <div class="tab-content">
+
+                        <!-- Jagung -->
+                        <div class="tab-pane active show" id="tabs-jagung">
+                          <div class="row row-cards">
+
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/1.png)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pemilihan Tanaman</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung1">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/2.png)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Penanaman</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung2">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/3.png)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pemantauan</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung3">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/cover/4.jpeg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pemilihan Lokasi</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung4">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/4.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Persiapan Lahan</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung5">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/5.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Penyiangan</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung6">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/6.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Irigasi</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung7">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/7.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pemupukan Organik</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung8">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/11.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pemupukan Kimiawi</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung9">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/8.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Tindakan Pencegahan</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung10">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/9.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Panen</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung11">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/10.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pasca Panen</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Jagung12">View</a>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <!-- End Jagung -->
+
+                        <!-- Padi -->
+                        <div class="tab-pane" id="tabs-padi">
+                          <div class="row row-cards">
+
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/1.png)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pemilihan Tanaman</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi1">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/2.png)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Penanaman</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi2">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/3.png)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pemantauan</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi3">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/cover/4.jpeg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pemilihan Lokasi</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi4">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/4.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Persiapan Lahan</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi5">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/5.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Penyiangan</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi6">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/6.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Irigasi</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi7">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/7.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pemupukan Organik</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi8">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/11.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pemupukan Kimiawi</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi9">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/8.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Tindakan Pencegahan</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi10">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/9.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Panen</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi11">View</a>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                              <div class="card">
+                                <div class="card-body text-center">
+                                  <div class="mb-3">
+                                    <span class="avatar avatar-xl rounded"
+                                      style="background-image: url(../static/images/icon/10.jpg)"></span>
+                                  </div>
+                                  <div class="card-title mb-1">Pasca Panen</div>
+                                </div>
+                                <a href="#" class="card-btn" data-bs-toggle="modal"
+                                  data-bs-target="#modal-Padi12">View</a>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <!-- End Padi -->
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page footer -->
+      <footer class="footer footer-transparent d-print-none">
+        <div class="container-xl">
+          <div class="row text-center align-items-center flex-row-reverse">
+            <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+              <ul class="list-inline list-inline-dots mb-0">
+                <li class="list-inline-item">
+                  Copyright &copy; 2023
+                  <a href="#" class="link-secondary">Computer Vision</a>.
+                  Agriculture
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal Jagung -->
+  <!-- Modal Pemilihan Tanaman -->
+  <div class="modal modal-blur fade" id="modal-Jagung1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pemilihan Tanaman</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover/1.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Pilih masa panen yang sesuai untuk iklim, sumber daya, dan tujuan produksi anda.
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              <b>Matang dalam satu musim penuh</b> : Genotipe matang pada 105-110 hari atau lebih. Varietas ini tersedia
+              baik untuk lahan
+              tadah hujan maupun irigasi. Misalnya : Ganga-5, Ganga-9, Ganga-2, Deccan 103, Shakti, Proagro 311.
+            </li>
+            <li>
+              <b>Matang tingkat sedang</b> : Varietas ini matang dalam 95-100 hari dan cocok di lingkungan sekitar.
+              Contoh : Vikram - toleransi
+              tinggi terhadap kekeringan dan embun bulu (90-95 hari), Vijay - tahan terhadap penyakit daun.
+            </li>
+            <li>
+              <b>Matang lebih awal</b> : Varietas ini matang dalam 89-90 hari. Cocok untuk penanaman tunggal atau
+              tumpang sari dengan curah hujan yang terjamin.
+            </li>
+            <li>
+              <b>Varietas yang matang sangat awal</b> : Membutuhkan 75-80 hari. Varietas ini cocok sebagai tanaman musim
+              panas atau untuk tumpang
+              sari dalam kondisi lahan tadah hujan. Contoh : Diara, Diara-3, D765, dan African Tall membutuhkan waktu
+              60-70 hari dan hanya
+              digunakan untuk memproduksi pakan ternak.
+            </li>
+            <li>
+              <b>Matang ekstra dini</b> : Cocok untuk penanaman dibawah kondisi lahan tadah hujan pada ketinggian yang
+              sangat tinggi (>2500 m).
+              Musim tanam sangat singkat dan suhunya relatif rendah. Contoh : Auli Komposit.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Penanaman -->
+  <div class="modal modal-blur fade" id="modal-Jagung2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Penanaman</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover/2.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Untuk mencapai produktivitas yang lebih tinggi dan efisiensi penggunaan sumber daya, jumlah tanaman yang
+            optimal adalah faktor utama,
+            jumlah benih dapat bervariasi tergantung pada tujuan produksi, ukuran benih, jenis tanaman, musim, metode
+            penanaman, dan sebagainya.
+            Berikut ini adalah beberapa rekomendasi berdasarkan jenis biji-bijian :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Biji normal 20 kg per hektar, jarak tanam harus 60x20cm.
+            </li>
+            <li>
+              Jagung manis 8 kg per hektar, jarak tanam harus 75x25cm.
+            </li>
+            <li>
+              Jagung pakan ternak 50 kg per hektar, jarak tanam harus 30x10cm.
+            </li>
+            <li>
+              Jagung muda 25 kg per hektar, jarak tanam harus 60x20cm.
+            </li>
+            <li>
+              Popcorn 12 kg per hektar, jarak tanam harus 60x20cm.
+            </li>
+            <li>
+              Jagung hijau 20 kg per hektar, jarak tanam harus 75x20cm.
+            </li>
+          </ul>
+          <p style="text-align: justify;">
+            Kiat-kiat :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Curah hujan yang lebih tinggi dan tanah yang lebih subur dapat merespon kepadatan populasi tanaman yang
+              lebih tinggi dengan baik.
+            </li>
+            <li>
+              Untuk sebagian besar kondisi, kedalaman 5 cm untuk penanaman kering sangat ideal.
+            </li>
+            <li>
+              Jika Anda menanam di tanah yang lembab, kedalaman tanam maksimumnya adalah 7 cm ditanah liat padat, 9 cm
+              ditanah liat ringan
+              dan tanah lempung berlumpur padat.
+            </li>
+            <li>
+              Gunakan tongkat penanaman dengan dua angka penunjuk pada jarak 5 cm. Satu penunjuk harus sepanjang 5 cm
+              untuk penanaman biji,
+              dan satu lagi sepanjang 7 cm untuk Pemupukan.
+            </li>
+            <li>
+              Segera setelah penyemaian dan Pemupukan, tutup benih dan pupuk dengan tanah halus.
+            </li>
+            <li>
+              Menenam jagung dalam barisan yang teratur penting untuk menjaga populasi tanaman yang seragam dan optimal,
+              memudahkan pekerjaan
+              antarkultur seperti Penyiangan, pemupukan, dan pengendalian penyakit-hama, serta untuk memanen dan
+              memperoleh hasil panen yang lebih baik.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Pemantauan -->
+  <div class="modal modal-blur fade" id="modal-Jagung3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pemantauan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover/3.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Pantau pertumbuhan tanaman Anda sesering mungkin. Telusuri lahan Anda secara acak atau zig-zag dan periksa
+            tanda-tanda penyakit,
+            hama, atau defisiensi. Defisiensi ditandai dengan perubahan warna daun dan kekuatan tanaman yang memburuk.
+            penyakit sering
+            terlihat berupa perubahan warna dan bercak-bercak atau goresan pada daun. Pada akhirnya, ingatlah bahwa
+            sebagian besar serangga
+            yang ada dilahan bermanfaat bagi tanaman Anda. Serangga yang menyerang tanaman Anda akan meninggalkan
+            kerusakan pada daun dan
+            kuncup dalam bentuk lubang. Pastikan Anda berdiskusi dengan para tetangga dan saling bertukar informasi
+            tentang penyakit saat ini
+            dengan komunitas setempat. Selain itu, cari dukungan dari dinas-dinas layanan masyarakat di daerah Anda.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Pemilihan Lokasi -->
+  <div class="modal modal-blur fade" id="modal-Jagung4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pemilihan Lokasi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover/4.jpeg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Tanah dengan kandungan bahan organik yang baik dan kapasitas resapan air yang tinggi dengan pH netral
+            dianggap baik untuk produktivitas
+            yang lebih tinggi. Sebagai tanaman yang sensitif terhadap tekanan kelembaban, terutama kelebihan kelembaban
+            tanah dan tekanan salinitas,
+            sebaiknya hindari lahan dataran rendah dengan drainase yang buruk dan lahan yang memiliki kadar garam lebih
+            tinggi. Oleh karena itu,
+            lahan dengan drainase yang tepat harus dipilih untuk penanaman jagung.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Persiapan Lahan -->
+  <div class="modal modal-blur fade" id="modal-Jagung5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Persiapan Lahan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover/5.png)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Jagung membutuhkan persemaian yang bagus dan rapat, bebas dari gulma. Ada beberapa langkah yang perlu Anda
+            lakukan untuk
+            menciptakan persemaian yang bagus :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Membajak hingga kedalaman 15-20cm.
+            </li>
+            <li>
+              Menghancurkan gumpalan.
+            </li>
+            <li>
+              Mencabuti tunggul.
+            </li>
+            <li>
+              Menggaru dua kali.
+            </li>
+            <li>
+              Sebelum penggaruan terakhir, menambahkan pupuk kandang atau kompos matang dilahan dan mencampurnya dengan
+              tahan hingga menyatu.
+            </li>
+            <li>
+              Membuka punggungan dan alur pada jarak 60 hingga 75 cm untuk tanaman biji-bijian masing-masing ditanah
+              sedang hingga padat.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Penyiangan -->
+  <div class="modal modal-blur fade" id="modal-Jagung6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Penyiangan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover/6.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Berikut ini beberapa informasi umum tentang efek penyiangan yang mungkin menarik bagi Anda :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Dalam beberapa minggu pertama setelah kemunculannya, jagung lebih sensitif terhadap gulma.
+            </li>
+            <li>
+              Penyiangan dan pencangkulan pertama harus dilakukan 20-25 hari setelah tanam.
+            </li>
+            <li>
+              Penyiangan kedua harus dilakukan ketika tanaman setinggi lutut (40-50) hari setelah tanam.
+            </li>
+            <li>
+              Penggemburan tanah dilakukan hingga ketinggian timbunannya mencapai 5 cm, bersamaan dengan penyiangan dan
+              pencangkulan. Penggemburan
+              tanah membantu melonggarkan tanah dan menyangga tanaman dari kemungkinan tumbang.
+            </li>
+            <li>
+              Secara umum, penyiangan dapat dilakukan dengan tangan, meskipun mesin tersedia untuk penyiangan secara
+              mekanis.
+            </li>
+            <li>
+              Saat menyiangi dan menggemburkan tanah, lakukan tindakan pencegahan untuk meminimalkan kerusakan fisik
+              pada tanaman.
+            </li>
+            <li>
+              Gulma dapat digunakan untuk pengomposan dan pakan ternak.
+            </li>
+            <li>
+              Saat menggunakan herbisida, selalu baca dan ikuti instruksi pada label produk. Gunakan herbisida yang
+              tepat pada jumlah yang
+              disarankan dan simpan dengan cara yang tepat.
+            </li>
+            <li>
+              Mintalah saran dari petugas penyuluh pertanian untuk panduan lebih lanjut.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Irigasi -->
+  <div class="modal modal-blur fade" id="modal-Jagung7" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Irigasi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover/7.png)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Sirami tanaman Anda dengan secara teratur. Di daerah dengan curah hujan sekitar 60 cm yang didistribusikan
+            dengan baik selama
+            musim tanam, irigasi tambahan tidak diperlukan.
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Jumlah total irigasi akan tergantung pada pola distribusi curah hujan.
+            </li>
+            <li>
+              Tanaman-tanaman rabi dan musim semi seluruhnya dibesarkan dengan irigasi. Jumlah irigasinya bervariasi.
+            </li>
+            <li>
+              Untuk jagung musim dingin, disarankan menjaga tanah tetap basah (irigasi ringan dan sering) sejak 15
+              Desember hingga 15 Februari
+              untuk melindungi tanaman dari cedera beku.
+            </li>
+            <li>
+              Lakukan irigasi lahan hanya sampai tingkat saturasi (jenuh) dan jangan membanjiri lahan.
+            </li>
+            <li>
+              Secara umum, irigasi harus diberikan di alur hingga ketinggian 2/3 dari punggungan/bedengan.
+            </li>
+            <li>
+              Lakukan irigasi lahan sekitar 5-7,5cm.
+            </li>
+            <li>
+              Irigasi dilakukan di alur antara dua baris tanaman.
+            </li>
+            <li>
+              Lakukan irigasi masing-masing sebelum kedua penebaran pupuk.
+            </li>
+            <li>
+              Waktu kritis untuk irigasi adalah tahap setinggi lutut (V8), tahap pertumbuhan rumbai, kemunculan rambut
+              sutera dalam bonggol
+              dan tahap memanen biji-bijian.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Pemupukan Organik -->
+  <div class="modal modal-blur fade" id="modal-Jagung8" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pemupukan Organik</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded" style="background-image: url(../static/images/icon/7.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Jika Anda tidak berencana untuk menggunakan pupuk kimia apapun, pastikan Anda menggunakan pupuk kandang yang
+            cukup selama 10-15
+            hari sebelum penyemaian. Bahan organik dalam bentuk pupuk kandang atau kompos sangat penting untuk
+            menghasilkan kualitas tanah
+            yang baik. Oleh karena itu, berikan 10 ton pupuk kandang per hektar lahan Anda.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Pemupukan Kimiawi -->
+  <div class="modal modal-blur fade" id="modal-Jagung9" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pemupukan Kimiawi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/11.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            <b>Minggu 1 </b>Gunakan pupuk kimia sebgai pupuk dasar saat menabur :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              30 kg urea per hektar.
+            </li>
+            <li>
+              70 kg P205 (DAP atau SSP) per hektar.
+            </li>
+            <li>
+              70 kg K20 (MOP) per hektar.
+            </li>
+            <li>
+              25 kg ZnS04 (Seng Sulfat) per hektar.
+            </li>
+          </ul>
+          <p style="text-align: justify;">
+            <b>Minggu 6 </b>Pemupukan nitrogen terpisah setelah muncul 10 daun :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Setelah tanaman jagung Anda mengembangkan 10 daun, berikan 97,5 kg urea per hektar.
+            </li>
+            <li>
+              Anda dapat memberikan pupuk ke sekitar tanaman atau menyebarkanya.
+            </li>
+          </ul>
+          <p style="text-align: justify;">
+            <b>Minggu 9 </b>Berikan 65 kg urea per hektar dalam siklus tanam Anda saat ini. Anda bisa memberikannya
+            disekitar tanaman atau
+            menyebarkanya. Harap pertimbangkan bahwa dosis pupuk dapat bervariasi tergantung pada jenis tanah Anda.
+            Jagung menghasilkan rumbai
+            sutra di bagian atas setiap bulir ketika tanaman siap untuk mulai berproduksi. Rumbai menghasilkan serbuk
+            sari yang menyerbuki bulir
+            sehingga dapat membentuk biji.
+          </p>
+          <p style="text-align: justify;">
+            <b>Minggu 13 </b>Berikan 17,5 kg urea per hektar. Pemberian ini bersifat pilihan. Anda bisa memberikannya ke
+            sekitar tanaman atau
+            menyebarkanya.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Tindakan Pencegahan -->
+  <div class="modal modal-blur fade" id="modal-Jagung10" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Tindakan Pencegahan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/11.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Belum
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+
+            </li>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Panen -->
+  <div class="modal modal-blur fade" id="modal-Jagung11" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Panen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded" style="background-image: url(../static/images/icon/7.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Penampilan tanaman mungkin menipu, terutama pada Komposit dan hibrida yang menghasilkan jumlah panenan
+            banyak dengan biji-bijian
+            kering sementara tangkai dan daunnya mungkin masih hijau.
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Buang kepala bulir atau bonggol dari tanaman yang tegak.
+            </li>
+            <li>
+              Panenan bonggol kepala bulir dikeringkan dibawah sinar matahari. Lakukan pemanenan dan susun seluruh
+              tanaman, dan terakhir
+              singkirkan kepala bulir.
+            </li>
+            <li>
+              Tinggalkan biji-bijian jagung dari bonggol dengan tangan atau menggunakan alat pemipil jagung kemanis.
+            </li>
+            <li>
+              Manfaatkan batang jagung sebagai pakan ternak dan bahan bakar. Stover/bonggol tempat biji-bijian
+              dihilangkan juga dapat
+              digunakan sebagai bahan bakar.
+            </li>
+            <li>
+              Jagung untuk pakan ternak dipanen pada tingkat berbunga 50%, yang menghasilkan panen maksimum atau bahan
+              kering dengan
+              hijauan yang cukup bergizi
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Pasca Panen -->
+  <div class="modal modal-blur fade" id="modal-Jagung12" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pasca Panen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded" style="background-image: url(../static/images/icon/7.jpg)"></span>
+            </center>
+          </div>
+          <ul style="text-align: justify;">
+            <li>
+              Pisahkan biji-biji untuk komsumsi sendiri, penjualan, dan penyimpanan.
+            </li>
+            <li>
+              Simpan biji-biji yang telah dibersihkan dan dikeringkan di wadah kantung supergreen.
+            </li>
+            <li>
+              Campur biji-bijian dengan minyak mimba untuk melindunginya dari kumbang, ngengat, dan jamur dalam
+              penyimpanan. Mimba adalah
+              pohon azadirichta indica. Daunnya memiliki sifat insektisida, dan oleh karenya dapat dicampur dengan
+              biji-bijian dari
+              sejumlah besar tanaman untuk mencegah serangan hama.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- End Modal Jagung -->
+
+  <!-- Modal Padi-->
+  <!-- Modal Pemilihan Tanaman -->
+  <div class="modal modal-blur fade" id="modal-Padi1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pemilihan Tanaman</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover2/1.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Masa Panen :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Varietas berdurasi panjang (160 hari dan lebih) cocok untuk beririgasi.
+            </li>
+            <li>
+              Varietas berdurasi sedang (120-140 hari) cocok untuk daerah tadah hujan maupun beririgasi.
+            </li>
+            <li>
+              Verietas berdurasi pendek (kurang dari 120 hari) cocok untuk daerah yang rawan kekeringan atau untuk dua
+              kali penanaman.
+            </li>
+          </ul>
+          <p style="text-align: justify;">
+            Tinggi tanaman :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Varietas tinggi (1,4m dan lebih) cocok untuk sawah yang rentan tergenang dan tidak rata, namun rebah
+              tanaman mungkin akan
+              menjadi masalah.
+            </li>
+            <li>
+              Varietas dengan tinggi sedang (1-1,2 m) cocok untuk sebagian besar daerah dan kurang rentan terhadap rebah
+              tanaman ketika
+              pupuk diberikan.
+            </li>
+            <li>
+              Verietas pendek paling cocok untuk sawah yang rata, terutama di daerah teririgasi. Tingginya umumnya
+              kurang dari 1 m.
+            </li>
+          </ul>
+          <p style="text-align: justify;">
+            kualitas Gabah :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Varietas aromatik dianggap sebagai kualitas premium, namun hasil panen biasanya lebih rendah.
+            </li>
+            <li>
+              Kualitas konsumsi seperti kelembutan, keknyalan, dan warna setelah dimasak adalah hal yang penting.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Penanaman -->
+  <div class="modal modal-blur fade" id="modal-Padi2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Penanaman</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover2/2.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            <b>3 minggu sebelum pembibitan.</b> Jumlah benih yang ditabur tergantung pada varietasnya. Untuk memindahkan
+            tanamkan padi pada lahan
+            seluas 1 hektar, Anda harus menabur benih sejumlah berikut ini pada tempat pembibitan :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              30 kg untuk varietas jangka panjang.
+            </li>
+            <li>
+              40 kg untuk varietas jangka menengah.
+            </li>
+            <li>
+              62,5 kg untuk varietas jangka pendek.
+            </li>
+            <li>
+              10 kg untuk hibrada.
+            </li>
+          </ul>
+          <p style="text-align: justify;">
+            Tips :
+          </p>
+          <ul style="text-align: justify;">
+            <li>
+              Taburkan benih pada persemaian basah jika Anda tinggal di daerah yang memiliki pasokan air cukup.
+            </li>
+            <li>
+              Aliri air ke persemaian ketika air dibutuhkan.
+            </li>
+            <li>
+              Jaga ketinggian air anatara 2 dan 5 cm.
+            </li>
+          </ul>
+          <p style="text-align: justify;">
+            <b>Ringkasan</b>
+          </p>
+          <p style="text-align: justify;">
+            Pindah tanam secara manuan cocok untuk lahan dengan perataan yang kurang optimal dan ketinggian air yang
+            bervariasi. Pindah tanamkan
+            bibit berumur 20-30 hari dari pembibitan ke dalam barisan dengan jarak tanam yang sesuai di lahan yang
+            digenangi air. Pindah tanamkan
+            secepat mungkin, idealnya dalam 30 menit setelah mencabut bibit. Tanam bibir padi Anda dengan jarak 20 cm x
+            20 cm. 4 langkah dalam
+            menanam padi :
+          </p>
+          <p style="text-align: justify;">
+            <b>Langkah 1 : </b>Cabut bibit rata-rata 20 hingga 30 hari setelah pembibitan (DAS) dari persemaian dan bawa
+            ke lahan utama. Varietas
+            tradisional seringkali dapat dipindah tanamkan lebih sedikit efek pada hasil panen. Pindah tanamkan bibit
+            segera seteah dicabut dari
+            persemaian dilahan berlumpur dan rata (keterlambatan sedikit saja akan menyebabkan pemulihan yang lambat
+            atau bahkan kematian beberapa bibit).
+            Bibit yang dicabut harus disimpan didalam air. Idealnya, pindah tanam dilakukan dalam waktu 30 menit setelah
+            dicabut. Untuk lahan seluas
+            0,4 hektar, dibutuhkan sekitar 8-12 pekerja.
+          </p>
+          <p style="text-align: justify;">
+            <b>Langkah 2 : </b>Pertahankan ketinggian air pada 3-10 cm.
+          </p>
+          <p style="text-align: justify;">
+            <b>Langkah 3 : </b>Pindahkan tanamkan 2-3 bibit per punggungan pada kedalaman yang dangkal dan jarak optimal
+            (20x20 cm). Tangani bibit
+            terutama akarnya dengan hati-hati untuk memastikan pertumbuhan kembali yang cepat dan pertumbuhan kembali
+            yang cepat dan pertumbuhan yang
+            cepat setelah pindah tanam.
+          </p>
+          <p style="text-align: justify;">
+            <b>Langkah 4 : </b>Tegakan tanaman yang baik harus dalam susunan 100-200 per m2.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Pemantauan -->
+  <div class="modal modal-blur fade" id="modal-Padi3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pemantauan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover2/3.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Pantau pertumbuhan tanaman Anda sesering mungkin. Telurusi lahan Anda secara acak atau zig-zag dan
+            periksa tanda-tanda penyakit, hama, atau defisiensi. Defisiensi ditandai dengan perubahan warna daun
+            dan kekuatan tanaman yang memburuk. Penyakit sering terlihat berupa perubahan warna dan bercak-bercak
+            atau goresan pada daun. Pada akhirnya, ingatlah bahwa sebagian besar serangga yang ada dilahan tidak
+            bermanfaat
+            bagi tanaman Anda. Serangga yang menyerang tanaman Anda akan meninggalkan kerusakan pada daun dan kuncuo
+            dalam
+            bentuk lubang. Pastikan Anda berdiskusi dengan para tetangga dan saling bertukar informasi tentang penyakit
+            saat ini dengan komunitas setempat.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Pemilihan Lokasi -->
+  <div class="modal modal-blur fade" id="modal-Padi4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pemilihan Lokasi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover2/4.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Lakukan pembibitan padi Anda ditempat yang mudah dijangkau dan cukup sinar matahari yang dekat dengan
+            sawah dan sumber air, dan terlindungi dari hewan dan burung. Jangan membuat pembibitan di sekitar
+            pepohonan yang teduh kaerna akan melemahkan bibit.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Persiapan Lahan -->
+  <div class="modal modal-blur fade" id="modal-Padi5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Persiapan Lahan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover2/4.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            <b>5 Minggu Sebelum Pembibitan</b>
+          </p>
+          <p style="text-align: justify;">
+            <b>Pembajakan Pertama. </b>Jika memungkinkan, bajak tanah segera setelah panen sebelumnya - terutama
+            jika tanah masih lembab. Anda juga bisa mengairi lahan untuk melunakkan tanah. Gunakan bajak piringan atau
+            bajak singkal untuk menghancurkan gulma dan sisa-sisa tanaman, sebaiknya 6-8 minggu sebelum penanaman,
+            dengan rekomendasi kedalaman maksimum 10cm. Balikkan tanah pada kedalaman yang dibutuhkan. Garukan pertama
+            dilakukan sepanjang pola bajakan untuk memecahkan gumpalan tanah. Garu lahan 2-3 kali dalam selang 5-7 hari.
+            Berikan kapur setiap tiga musim tanam untuk tanah yang berisifat asam.
+          </p>
+          <p style="text-align: justify;">
+            <b>Cara Mempersiapkan Lahan. </b> Persiapan lahan yang tepat adalah hal yang utama untuk panen Anda, dan
+            dibutuhkan
+            pada penanaman padi untuk meminimalkan persainganya dengan gulma. Berikut adalah langkah-langkah yang harus
+            diikuti : <br>
+            <b>- Langkah 1 : </b>Jika memungkinkan, bajak segera setelah panen sebelumnya - terutama jika tanahnya masih
+            lembab.
+            Anda juga bisa mengairi lahan untuk melembutkan tanah. Pilihan lain adalah melepaskan air dari kanal untuk
+            melunakkan tanah. <br>
+            <b>- Langkah 2 : </b>Bajak melintah lahan dengan cakram atau garu setidaknya dua kali untuk membuat ukuran
+            gumpalan kecil. Anda dapat menggunakan
+            alat tangan atau tenaga binatang(Kerbau). Pembajakan kedua harus dilakukan 2-3 minggu sebelum tanam.
+            Penggaruan terakhir harus
+            dilakukan 1 minggu sebelum tanam dengan kedalaman maksimum yang disarankan, yaitu 10cm. <br>
+            <b>- Langkah 3 : </b>Perbaiki tanggur, hancurkan lubang tikus, perbaiki lubang dan retakan, dan buat tanggul
+            menjadi padat.
+            Tanggul harus setidaknya setinggi 0,5m dengan lebar 1m. <br>
+            <b>- Langkah 4 : </b>Meratakan lahan akan memberikan jangkauan air yang lebih baik, pembentukan tanaman yang
+            lebih baik,
+            dan kontrol gulma yang lebih baik.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Penyiangan -->
+  <div class="modal modal-blur fade" id="modal-Padi6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Penyiangan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/cover/6.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            </ul> <b> 3 Minggu </b> sebelum pembibitan
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Bajak dan garu lahan yang telah dikosongkan setidaknya berselang 10-14 hari atau setelah hujan.
+
+            <li> Gulma seharusnya sudah terlihat sejak berkecambah.
+
+            <li> Berikan air secara permanen lebih awal karena gulma tidak dapat berkecambah di dalam air.
+
+            <li> Singkirkan gulma dari sawah sebelum memberikan pupuk pada tanaman. Pupuk juga akan memberikan nutrisi
+              bagi gulma yang tidak diinginkan.
+
+          </ul> <b> Minggu 1 </b> Pemberian herbisida sebelum kemunculan gulma pada lahan padi
+          <p style="text-align: justify;">
+            Beberapa rekomendasi produk:
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Dua atau tiga hari setelah pindah tanam, campurkan salah satu dari herbisida ini dalam 150 kg pasir
+              per hektar dan sebarkan dengan merata ke dalam air berkedalaman 4-5 cm.
+
+            <li> Butaklor (Butachlor) 50 EC sebanyak 3000 ml per hektar.
+
+            <li> Tiobenkarb (Thiobencarb) 50 EC sebanyak 3000 ml per hektar.
+
+            <li> Pretilaklor (Pretilachlor) 50 EC sebanyak 1500 ml per hektar.
+
+          </ul> <b> Minggu 3 </b> Pengendalian gulma secara manual dan mekanis
+          <p style="text-align: justify;">
+            Ringkasan:
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Direkomendasikan untuk menyiangi gulma pada 20-50 hari pertama setelah dipindai tanam ke lahan utama.
+              Ulangi penyiangan gulma selama dua kali lagi selama siklus penanaman. Penyiangan gulma secara manual
+              adalah bagian dari pengelolaan gulma terpadu yang melibatkan penggunaan metode pengendalian secara kultur,
+              manual dan mekanis.
+
+          </ul> <b> Minggu 4 </b> Pengendalian gulma: penggunaan herbisida
+          <p style="text-align: justify;">
+            Untuk gulma rumput, Anda dapat memberikan dalam 15-20 hari:
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Bukti sihalofop (Cyhalofop-butyl) 625-750 ml per hektar.
+
+            <li> Fenoksaprop P Etil 500-625 ml per hektar.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Irigasi -->
+  <div class="modal modal-blur fade" id="modal-Padi7" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Irigasi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/14.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            </ul> <b> Minggu 1 </b> Pengairan pada tahap-tahap penting
+          <p style="text-align: justify;">
+            Setelah pindah tanam, ketinggian air pada awalnya harus sekitar 3 cm, dan secara bertahap meningkat menjadi
+            5-10 cm seiring pertumbuhan tanaman. Ketinggian air harus tetap pada tingkat tersebut hingga lahan
+            dikeringkan 7-10 hari sebelum panen. Hal utama adalah memastikan penggenangan terus menerus dilakukan.
+            Selama tahap-tahap penting:
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Tahap inisiasi bunga.
+
+            <li> Tahap bunting.
+
+            <li> Tahap keluar malai.
+
+            <li> Tahap pembungaan.
+
+              <p style="text-align: justify;">
+          </ul> <b> Minggu 11 </b> Kelola air dengan bijak
+          <p style="text-align: justify;">
+            Untuk menjaga tanaman terus tumbuh, pasokan air harus sama atau sedikit di atas tingkat penguapan. Untuk
+            memaksimalkan efisiensi penggunaan air. Lakukan hal-hal berikut ini:
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Rawat tanggul.
+
+            <li> Ratakan lahan.
+
+            <li> Genangi lahan.
+
+            <li> Gunakan tanaman jangka pendek.
+
+            <li> Jaga ketinggian air optimal selama tahap penting tanaman.
+
+            <li> Panen tepat pada waktunya.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Pemupukan Organik -->
+  <div class="modal modal-blur fade" id="modal-Padi8" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pemupukan Organik</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded" style="background-image: url(../static/images/icon/7.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            Jika Anda tidak berencana untuk menggunakan pupuk kimia apapun, pastikan Anda menggunakan pupuk kandang yang
+            cukup selama 10-15
+            hari sebelum penyemaian. Bahan organik dalam bentuk pupuk kandang atau kompos sangat penting untuk
+            menghasilkan kualitas tanah
+            yang baik. Oleh karena itu, berikan 10 ton pupuk kandang per hektar lahan Anda.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Pemupukan Kimiawi -->
+  <div class="modal modal-blur fade" id="modal-Padi9" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pemupukan Kimiawi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/11.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            <b>2 Minggu </b> sebelum pembibitan
+          <p style="text-align: justify;">
+            Berikan pupuk pada pembibitan Anda
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Berikan dosis pupuk nitrogen yang disarankan 10 hari setelah kemunculan bibit.
+
+            <li> Dosis pupuk yang disarankan adalah 40 Kg DAP per hektar atau 16,25 Kg urea per hektar +115 Kg super
+              fosfat per hektar.
+
+            <li> Berikan sebagai lapisan permukaan pada pembibitan Anda.
+
+
+              <p style="text-align: justify;">
+          </ul> <b> 1 Minggu </b> sebelum pembibitan
+          <p style="text-align: justify;">
+            Pemupukan sebelum pindah tanam
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Sebarkan di lahan secara merata 10% dari nitrogen yang tersedia, seluruh fosfor dan kalium, dan
+              berikan pupuk tersebut ke tanah yang tepat sebelum penaburan atau pindah tanam sebagai dosis dasar.
+
+            <li> Berikan urea 15 Kg per hektar, DAP 52,5 Kg per hektar, dan MOP 57,5 Kg per hektar.
+
+            <li> Jangan menggunakan pupuk kimia jika Anda harus menyediakan lebih dari 5 Kg padi untuk menanggung biaya
+              1 Kg pupuk. Pupuk harus disimpan di tempat kering dan sejuk yang jauh dari jangkauan anak-anak.
+
+            <li> Jangan memberikan pupuk dengan dosis tinggi pada varietas tradisional karena memiliki respon yang
+              terbatas dan dapat menyebabkan tanaman rebah.
+
+              <p style="text-align: justify;">
+              <p> Perhatian: Penggunaan pupuk nitrogen yang berlebihan, khususnya selama tahap pembungaan dapat
+                menyebabkan kemandulan. Konsekuensinya adalah berkurangnya hasil panen secara signifikan.
+
+              <p style="text-align: justify;">
+          </ul> <b> Minggu 4 </b> Pemupukan
+          <p style="text-align: justify;">
+            Pemupukan pada tahap-tahap anakan
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Berikan sepertiga nitrogen sebagai lapisan permukaan selama tahap awal anakan.
+
+            <li> Jika Anda menggunakan urea, berikan 62,5 Kg per hektar.
+
+            <li> Gunakan lebih sedikit nitrogen jika Anda menanam benih inbrida (bawaan).
+
+            <li> Keringkan air sebelum melapisi permukaan dengan pupuk nitrogen, dan biarkan air masuk 24 jam kemudian.
+
+            <li> Berikan pupuk dengan menyebarkan semerata mungkin.
+
+            <li> Jangan berikan pupuk sebelum hujan.
+
+            <li> Pada tanaman yang telah tumbuh, gunakan pupuk kimia hanya digenangan air dan sebarkan dengan merata di
+              seluruh lahan.
+
+
+              <p style="text-align: justify;">
+          </ul> <b> Minggu 9 </b> pemupukan
+          <p style="text-align: justify;">
+            Pemupukan pada tahap permulaan malai
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Berikan sisa dosis nitrogen seminggu sebelum permulaan malai.
+
+            <li> Jika Anda menggunakan urea, berikan sebanyak 62,5 Kg per hektar.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Tindakan Pencegahan -->
+  <div class="modal modal-blur fade" id="modal-Padi10" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Tindakan Pencegahan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/11.jpg)"></span>
+            </center>
+          </div>
+
+          <p style="text-align: justify;">
+            </ul> <b> Minggu 3 </b> Mencegah hama penggerek batang kuning padi
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Menambah Ketinggian air irigasi secara periodik untuk menghancurkan telur.
+
+            <li> Menggunakan pupuk nitrogen atau pupuk kandang secukupnya. Memberikan pupuk secara terpisah dalam musim
+              tanam.
+
+            <li> Tidak menggunakan insektisida berskala luas untuk memerangi hama karena bisa membunuh serangga-serangga
+              bermanfaat.
+
+            <li> Mengendalikan gulma di sawah dan sekitarnya.
+
+
+          </ul> <b> Minggu 5 </b> Pengendalian hayati terhadap hama ganjur padi
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Menggunakan perangkap cahaya bersama papan lengket yang menggunakan oli atau lem untuk menangkap
+              ngengat.
+
+            <li> Menyingkirkan semua tanaman inang yang tumbuh di luar musim di sekitar sawah. Biarkan lahan kosong di
+              luar musim tanam.
+
+            <li> Memeriksa rekomendasi pupuk nitrogen dan kalium yang optimal.
+
+            <li> Membajak sisa tunggul dari tanaman sebelumnya segera setelah panen.
+
+
+          </ul> <b> Minggu 6 </b> Mencegah busuk batang padi
+          <ul style="text-align: justify;">
+            <li>
+              </p> Mengeringkan sawah untuk mengurangi penyebaran.
+
+            <li> Mengurangi kandungan nitrogen dan melakukan pemberian terpisah.
+
+            <li> Menghindari air irigasi yang diam.
+
+            <li> Meningkatkan kandungan kalium untuk menjaga pH tanah tetap tinggi.
+
+            <li> Mengumpulkan dan membakar sisa-sisa tanaman setelah panen agar jerami terdekomposisi.
+
+
+          </ul> <b> Minggu 7 </b> Pengendalian walang sangit pada padi
+          <ul style="text-align: justify;">
+            <li>
+              </p> Mulai memantau lahan setiap hari pada saat prapembungaan.
+
+            <li> Menyingkirkan tanaman inang lain seperti rumput jari/digitaria, rumput belulang/rumput angsa, dan
+              kacang polong.
+
+            <li> Melindungi serangga menguntungkan dengan mengurangi penyemprotan insektisida.
+
+            <li> Mendorong pertumbuhan dan perkembangan padi dengan memberikan pupuk dan air.
+
+            <li> Menyemprotkan larutan sabun aromatik (misalnya serai) untuk mengusir walang sangit.
+
+            <li> Menggunakan jaring nyamuk pada pagi atau sore hari untuk menyingkirkan walang sangit, menghancurkan,
+              dan memasukkannya ke dalam air kemudian melakukan penyemprotan untuk mengusir serangga pada padi lain.
+
+            <li> Mendorong serangga pemangsa alami: beberapa jenis tawon, belalang, dan laba-laba yang menyerang walang
+              sangit atau telurnya.
+
+            <li> Penggunaan insektisida secara serampangan akan mengganggu serangan pemangsa alami, membuat hama bangkit
+              kembali.
+
+          </ul> <b> Minggu 9 </b> Pencegahan bercak coklat padi
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Menjaga pasokan nutrisi yang seimbang dan memantau unsur hara tanah secara teratur.
+
+            <li> Memantau lahan untuk mendeteksi penyakit sejak tahap anakan.
+
+            <li> Untuk tanah rendah silikon, memberikan terak (ampas) kalsium silikat sebelum menanam.
+
+          </ul> <b> Minggu 15 </b> Pencegahan dan pengendalian gosong palsu pada padi
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Melakukan pembasahan dan pengeringan secara bergantian, bukan penggenangan permanen (mengurangi
+              kelembaban).
+
+            <li> Memberikan nitrogen secukupnya dan membagi melalui pemberian terpisah.
+
+            <li> Memantau lahan untuk mendeteksi tanda penyakit.
+
+            <li> Menjaga tanggul dan saluran irigasi tetap bersih.
+
+            <li> Membajak sawah dalam-dalam dengan melakukan solarisasi lahan setelah panen dan juga membantu mengurangi
+              terbawanya jamur ke musim berikutnya.
+
+            <li> Merencanakan rotasi tanaman selama 2 atau 3 tahun dengan tanaman yang tidak rentan.
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Panen -->
+  <div class="modal modal-blur fade" id="modal-Padi11" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Panen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/12.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            <b> Minggu 18 </b> Memilih waktu panen
+          <p style="text-align: justify;">
+            Dua pengamatan utama yang digunakan untuk menentukan waktu panen padi yang tepat:
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Kadar air: Kadar air pada bulir idealnya antara 18% dan 22% berat basah (wet basis, w.b). Uji bulir
+              dengan gigi Anda. Bulir seharusnya keras dan tidak rapuh.
+
+            <li> Jumlah bulir matang per malai: Tanaman harus dipanen ketika 80-85% dari bulir di sawah sudah berubah
+              warna dari hijau ke kuning matang.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- Modal Pasca Panen -->
+  <div class="modal modal-blur fade" id="modal-Padi12" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pasca Panen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xll rounded"
+                style="background-image: url(../static/images/icon/13.jpg)"></span>
+            </center>
+          </div>
+          <p style="text-align: justify;">
+            <b> Minggu 20 </b> Mengeringkan padi
+          <p style="text-align: justify;">
+            Pengeringan yang baik akan meningkatkan waktu penyimpanan gabah, mencegah penurunan kualitas, mengurangi
+            respirasi biologis yang akan menyebabkan penurunan kualitas gabah, dan mendapat hasil penggilingan yang
+            optimal. Ada beberapa cara untuk mengeringkan padi setelah panen:
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> pengeringan di bawah sinar matahari adalah cara paling ekonomis untuk mengeringkan gabah. Tebarkan
+              gabah kering di permukaan seperti jalan beton, tikar, lembaran plastik, dan di lahan untuk mengeringkan
+              secara alami.
+
+            <li> Pengeringan kimiawi melibatkan penyemprotan larutan garam biasa dengan berat jenis 1,1 hingga 1,2 pada
+              bulir padi yang sudah matang. Perlakuan ini dapat menurunkan kadar air dari 29% hingga 14,5% setelah 4
+              hari.
+
+              <p style="text-align: justify;">
+              <p> Setelah kering, gabah padi, sekarang disebut gabah kering, siap untuk diproses.
+
+          </ul> <b> Minggu 21 </b> Kondisi penyimpangan yang tepat
+          <p style="text-align: justify;">
+            Idealnya, hasil panen Anda dapat disimpan di tempat yang memenuhi kriteria berikut:
+
+          <ul style="text-align: justify;">
+            <li>
+              </p> Memberi perlindungan dari serangga, tikus, dan burung.
+
+            <li> Memiliki kondisi higienis yang baik.
+
+            <li> Memudahkan bongkar muat.
+
+            <li> Menggunakan ruang secara efisien.
+
+            <li> Memudahkan perawatan dan pengelolaan.
+
+            <li> Mencegah kelembaban memasuki biji kembali setelah pengeringan.
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <!-- End Modal Padi -->
+
+  <!-- Libs JS -->
+  <script src="../static/script.js"></script>
+  <script src="../static/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
+  <script src="../static/dist/libs/jsvectormap/dist/js/jsvectormap.min.js" defer></script>
+  <script src="../static/dist/libs/jsvectormap/dist/maps/world.js" defer></script>
+  <script src="../static/dist/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
+  <!-- Tabler Core -->
+  <script src="../static/dist/js/tabler.min.js" defer></script>
+  <script src="../static/dist/js/demo.min.js" defer></script>
+</body>
+
+</html>

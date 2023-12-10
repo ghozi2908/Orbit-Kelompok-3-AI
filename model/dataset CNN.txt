@@ -1,0 +1,10 @@
+Penyakit Kentang:
+https://universe.roboflow.com/new-workspace-qgyxv/potato-plant-disaese-jjfg3
+
+Penyakit Padi:
+https://universe.roboflow.com/rice-njh5g/rice-plant-leaf-disease-classification
+Penyakit Pisang:
+https://universe.roboflow.com/banana-buddy-research-sgury/banana-disease-identification
+Penyakit Jagung: -di arya
+Kematangan:
+https://app.roboflow.com/universitas-sultan-ageng-tirtayasa/kematangan-tzade/1

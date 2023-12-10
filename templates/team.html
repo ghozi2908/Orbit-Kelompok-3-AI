@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Object Detection Agriculture</title>
+    <!-- CSS files -->
+    <link href="../static/dist/css/tabler.min.css" rel="stylesheet"/>
+    <link href="../static/dist/css/tabler-flags.min.css" rel="stylesheet"/>
+    <link href="../static/dist/css/tabler-payments.min.css" rel="stylesheet"/>
+    <link href="../static/dist/css/tabler-vendors.min.css" rel="stylesheet"/>
+    <link href="../static/dist/css/demo.min.css" rel="stylesheet"/>
+	<link rel="icon" type="image/jpg" href="../static/images/logo AI.png" sizes="24x24">
+    <style>
+      @import url('https://rsms.me/inter/inter.css');
+      :root {
+      	--tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+      }
+      body {
+      	font-feature-settings: "cv03", "cv04", "cv11";
+      }
+    </style>
+  </head>
+  <body >
+    <script src="../static/dist/js/demo-theme.min.js"></script>
+    <div class="page">
+      <!-- Sidebar -->
+      <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu"
+            aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <h1 class="navbar-brand navbar-brand-autodark">
+            <a href="{{ url_for('main', filename='index.html' ) }}">
+              <img src="../static/images/logo AI.png" width="110" height="32" alt="Tabler"
+                class="navbar-brand-image">
+            </a>
+          </h1>
+          <div class="collapse navbar-collapse" id="sidebar-menu">
+            <ul class="navbar-nav pt-lg-3">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main', filename='index.html' ) }}">
+                  <span
+                    class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                      viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                      <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Home
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('about', filename='about.html' ) }}">
+                  <span
+                    class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                      viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    About
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                  data-bs-auto-close="false" role="button" aria-expanded="false">
+                  <span
+                    class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                      viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                      <path d="M12 12l8 -4.5" />
+                      <path d="M12 12l0 9" />
+                      <path d="M12 12l-8 -4.5" />
+                      <path d="M16 5.25l-8 4.5" />
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Detection Agriculture
+                  </span>
+                </a>
+                <div class="dropdown-menu">
+                  <div class="dropdown-menu-columns">
+                    <div class="dropdown-menu-column">
+                      <a class="dropdown-item" href="{{ url_for('detection_image', filename='detection_image.html' ) }}">
+                        Detection Image
+                      </a>
+                      <a class="dropdown-item" href="{{ url_for('detection_webcam', filename='detection_webcam.html' ) }}">
+                        Detection Webcam
+                      </a>
+                      <a class="dropdown-item" href="{{ url_for('detection_temperature', filename='detection_temperature.html' ) }}">
+                        Monitoring IoT
+                      </a>
+                      <a class="dropdown-item" href="{{ url_for('education_agriculture', filename='education_agriculture.html' ) }}">
+                        Education Agriculture
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('team', filename='team.html' ) }}">
+                  <span
+                    class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
+                      width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                      stroke="currentColor" fill="none" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                      <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Team Engineer
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <div class="page-wrapper">
+        <!-- Page header -->
+        <div class="page-header d-print-none">
+          <div class="container-xl">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                  Overview
+                </div>
+                <h2 class="page-title">
+                  Home / Team Engineer
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Page body -->
+        <div class="page-body">
+          <div class="container-xl">
+            <div class="row row-deck row-cards">
+              <div class="col-md-6 col-xl-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="mb-3">
+                      <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Annas.jpg)"></span>
+                    </div>
+                    <div class="card-title mb-1">Annas Al Hadid</div>
+                    <div class="text-muted">UI/UX Desaign</div>
+                  </div>
+                  <a href="#" class="card-btn" data-bs-toggle="modal" data-bs-target="#modal-annas">View full profile</a>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="mb-3">
+                      <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Arya.jpg)"></span>
+                    </div>
+                    <div class="card-title mb-1">Arya Rangga Syahputra</div>
+                    <div class="text-muted">AI/ML Engineer</div>
+                  </div>
+                  <a href="#" class="card-btn" data-bs-toggle="modal" data-bs-target="#modal-arya">View full profile</a>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="mb-3">
+                      <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Ghani.png)"></span>
+                    </div>
+                    <div class="card-title mb-1">Ghani Abdur Rahman</div>
+                    <div class="text-muted">Data Scientist</div>
+                  </div>
+                  <a href="#" class="card-btn" data-bs-toggle="modal" data-bs-target="#modal-ghani">View full profile</a>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="mb-3">
+                      <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Ghozi.png)"></span>
+                    </div>
+                    <div class="card-title mb-1">Ghozi Yusuf Matdoan</div>
+                    <div class="text-muted">AI/ML Engineer</div>
+                  </div>
+                  <a href="#" class="card-btn" data-bs-toggle="modal" data-bs-target="#modal-ghozi">View full profile</a>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="mb-3">
+                      <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Isti.png)"></span>
+                    </div>
+                    <div class="card-title mb-1">Istianah</div>
+                    <div class="text-muted">UI/UX Desaign</div>
+                  </div>
+                  <a href="#" class="card-btn" data-bs-toggle="modal" data-bs-target="#modal-istianah">View full profile</a>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="mb-3">
+                      <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Rifaldi.jpg)"></span>
+                    </div>
+                    <div class="card-title mb-1">Rifaldi</div>
+                    <div class="text-muted">Data Scientist</div>
+                  </div>
+                  <a href="#" class="card-btn" data-bs-toggle="modal" data-bs-target="#modal-rifaldi">View full profile</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Page footer -->
+        <footer class="footer footer-transparent d-print-none">
+          <div class="container-xl">
+            <div class="row text-center align-items-center flex-row-reverse">
+              <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                <ul class="list-inline list-inline-dots mb-0">
+                  <li class="list-inline-item">
+                    Copyright &copy; 2023
+                    <a href="#" class="link-secondary">Computer Vision</a>.
+                    Agriculture
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Modal Annas -->
+    <div class="modal modal-blur fade" id="modal-annas" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">My Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Annas.jpg)"></span>
+            </center>
+            </div>
+            <p><b>Nama Lengkap</b> : Annas Al Hadid</p>
+            <p><b>Email</b> : annas@gmail.com</p>
+            <p><b>Jabatan</b> : UI/UX Desaign</p>
+            <p><b>Motto Hidup</b> : Belajar dari kegagalan adalah hal yang bijak</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- Modal Arya -->
+    <div class="modal modal-blur fade" id="modal-arya" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">My Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Arya.jpg)"></span>
+            </center>
+            </div>
+            <p><b>Nama Lengkap</b> : Arya Rangga Syahputra Nurrohman</p>
+            <p><b>Email</b> : aryarangga1226@gmail.com</p>
+            <p><b>Jabatan</b> : AI/ML Engineer</p>
+            <p><b>Motto Hidup</b> : Setiap kesulitan selalu ada kemudahan. Setiap masalah pasti ada solusi.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- Modal Ghani -->
+    <div class="modal modal-blur fade" id="modal-ghani" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">My Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Ghani.png)"></span>
+            </center>
+            </div>
+            <p><b>Nama Lengkap</b> : Ghani Abdur Rahman</p>
+            <p><b>Email</b> : ghani@gmail.com</p>
+            <p><b>Jabatan</b> : Data Scientist</p>
+            <p><b>Motto Hidup</b> : Aku mencapai kesuksesan karena aku tidak menargetkan kegagalan.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- Modal Ghozi -->
+    <div class="modal modal-blur fade" id="modal-ghozi" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">My Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Ghozi.png)"></span>
+            </center>
+            </div>
+            <p><b>Nama Lengkap</b> : Ghozi Yusuf Matdoan</p>
+            <p><b>Email</b> : ghozi@gmail.com</p>
+            <p><b>Jabatan</b> : AI/ML Engineer</p>
+            <p><b>Motto Hidup</b> : Kegagalan dimulai dari pikiran, jadi pikiran saya adalah tempat kesuksesan.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- Modal Istianah -->
+    <div class="modal modal-blur fade" id="modal-istianah" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">My Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Isti.png)"></span>
+            </center>
+            </div>
+            <p><b>Nama Lengkap</b> : Istianah</p>
+            <p><b>Email</b> : istianah@gmail.com</p>
+            <p><b>Jabatan</b> : UI/UX Desaign</p>
+            <p><b>Motto Hidup</b> : Kerja keras menghasilkan keberuntungan dan kesuksesan.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- Modal Ridaldi -->
+    <div class="modal modal-blur fade" id="modal-rifaldi" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">My Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-2">
+            <center>
+              <span class="avatar avatar-xl rounded" style="background-image: url(../static/images/Team/Rifaldi.jpg)"></span>
+            </center>
+            </div>
+            <p><b>Nama Lengkap</b> : Rifaldi</p>
+            <p><b>Email</b> : rifaldi@gmail.com</p>
+            <p><b>Jabatan</b> : Data Scientist</p>
+            <p><b>Motto Hidup</b> : Jika orang lain bisa, maka aku juga bisa.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- Libs JS -->
+    <script src="../static/script.js"></script>
+    <script src="../static/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
+    <script src="../static/dist/libs/jsvectormap/dist/js/jsvectormap.min.js" defer></script>
+    <script src="../static/dist/libs/jsvectormap/dist/maps/world.js" defer></script>
+    <script src="../static/dist/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
+    <!-- Tabler Core -->
+    <script src="../static/dist/js/tabler.min.js" defer></script>
+    <script src="../static/dist/js/demo.min.js" defer></script>
+  </body>
+</html>
